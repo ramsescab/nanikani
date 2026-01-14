@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="icons/icon128.png" alt="NaniKani Logo" width="128" height="128">
+  <img src="documentation/header.png" alt="NaniKani Logo" width="128" height="128">
 </p>
 
 # NaniKani
