@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="icons/icon128.png" alt="NaniKani Logo" width="128" height="128">
+</p>
+
 # NaniKani
 
 A Chrome extension that hides statistics on WaniKani to help you focus on learning.
