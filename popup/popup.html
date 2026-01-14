@@ -12,10 +12,27 @@
       <h1>NaniKani</h1>
     </header>
     <main>
-      <p>Welcome to NaniKani!</p>
+      <section class="settings">
+        <h2>Hide Stats on:</h2>
+        <label class="checkbox-item">
+          <input type="checkbox" id="hideLessons" checked>
+          <span class="checkmark"></span>
+          <span class="label-text">Lessons</span>
+        </label>
+        <label class="checkbox-item">
+          <input type="checkbox" id="hideReviews" checked>
+          <span class="checkmark"></span>
+          <span class="label-text">Reviews</span>
+        </label>
+        <label class="checkbox-item">
+          <input type="checkbox" id="hideExtraStudy" checked>
+          <span class="checkmark"></span>
+          <span class="label-text">Extra Study</span>
+        </label>
+      </section>
     </main>
     <footer>
-      <p>Version 1.0.0</p>
+      <p>Version 0.1</p>
     </footer>
   </div>
   <script src="popup.js"></script>

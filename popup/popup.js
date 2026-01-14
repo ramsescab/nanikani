@@ -1,36 +1,57 @@
 // NaniKani Popup Script
 
+const DEFAULT_SETTINGS = {
+  hideLessons: true,
+  hideReviews: true,
+  hideExtraStudy: true
+};
+
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('NaniKani popup loaded');
   init();
 });
 
 async function init() {
-  // Initialize popup functionality
-  console.log('Initializing NaniKani...');
+  // Load saved settings
+  const settings = await getSettings();
+  
+  // Set checkbox states
+  document.getElementById('hideLessons').checked = settings.hideLessons;
+  document.getElementById('hideReviews').checked = settings.hideReviews;
+  document.getElementById('hideExtraStudy').checked = settings.hideExtraStudy;
+  
+  // Add event listeners
+  document.getElementById('hideLessons').addEventListener('change', onSettingChange);
+  document.getElementById('hideReviews').addEventListener('change', onSettingChange);
+  document.getElementById('hideExtraStudy').addEventListener('change', onSettingChange);
 }
 
-// Example: Save data to Chrome storage
-async function saveToStorage(key, value) {
-  return new Promise((resolve) => {
-    chrome.storage.local.set({ [key]: value }, resolve);
-  });
+async function onSettingChange() {
+  const settings = {
+    hideLessons: document.getElementById('hideLessons').checked,
+    hideReviews: document.getElementById('hideReviews').checked,
+    hideExtraStudy: document.getElementById('hideExtraStudy').checked
+  };
+  
+  await saveSettings(settings);
+  
+  // Notify content script of settings change
+  const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (tabs[0]?.id) {
+    chrome.tabs.sendMessage(tabs[0].id, { type: 'SETTINGS_CHANGED', settings });
+  }
 }
 
-// Example: Get data from Chrome storage
-async function getFromStorage(key) {
+async function getSettings() {
   return new Promise((resolve) => {
-    chrome.storage.local.get([key], (result) => {
-      resolve(result[key]);
+    chrome.storage.local.get(['settings'], (result) => {
+      // Merge with defaults to handle missing keys from older versions
+      resolve({ ...DEFAULT_SETTINGS, ...result.settings });
     });
   });
 }
 
-// Example: Send message to background script
-function sendMessageToBackground(message) {
+async function saveSettings(settings) {
   return new Promise((resolve) => {
-    chrome.runtime.sendMessage(message, (response) => {
-      resolve(response);
-    });
+    chrome.storage.local.set({ settings }, resolve);
   });
 }

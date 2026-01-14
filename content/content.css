@@ -1,9 +1,2 @@
 /* NaniKani Content Styles */
-/* Hide statistics elements on WaniKani */
-
-.character-header__menu-statistics,
-.quiz-statistics,
-.quiz-statistics__item {
-  display: none !important;
-  visibility: hidden !important;
-}
+/* Styles are applied dynamically via JavaScript based on user settings */

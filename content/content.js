@@ -11,34 +11,102 @@
     'quiz-statistics__item'
   ];
   
-  // Routes where we should hide elements
-  const TARGET_ROUTES = [
-    '/subject-lessons',
-    '/recent-mistakes'
-  ];
+  // Default settings
+  let settings = {
+    hideLessons: true,
+    hideReviews: true,
+    hideExtraStudy: true
+  };
   
-  // Check if current URL matches target routes
-  function isTargetRoute() {
-    const path = window.location.pathname;
-    return TARGET_ROUTES.some(route => path.startsWith(route));
+  // Check if current URL matches lessons route
+  function isLessonsRoute() {
+    return window.location.pathname.startsWith('/subject-lessons');
+  }
+  
+  // Check if current URL matches reviews route
+  function isReviewsRoute() {
+    return window.location.pathname.startsWith('/subjects/review');
+  }
+  
+  // Check if current URL matches extra study route
+  function isExtraStudyRoute() {
+    return window.location.pathname.startsWith('/recent-mistakes');
+  }
+  
+  // Check if we should hide on current route based on settings
+  function shouldHide() {
+    if (isLessonsRoute() && settings.hideLessons) return true;
+    if (isReviewsRoute() && settings.hideReviews) return true;
+    if (isExtraStudyRoute() && settings.hideExtraStudy) return true;
+    return false;
   }
   
   // Hide elements by class name
   function hideElements() {
-    if (!isTargetRoute()) return;
+    const shouldHideNow = shouldHide();
+    console.log('NaniKani: hideElements called', { 
+      path: window.location.pathname,
+      isLessons: isLessonsRoute(),
+      isReviews: isReviewsRoute(),
+      isExtraStudy: isExtraStudyRoute(),
+      settings,
+      shouldHide: shouldHideNow 
+    });
     
     HIDDEN_CLASSES.forEach(className => {
       const elements = document.getElementsByClassName(className);
+      console.log(`NaniKani: Found ${elements.length} elements with class "${className}"`);
       for (let i = 0; i < elements.length; i++) {
-        elements[i].style.display = 'none';
-        elements[i].style.visibility = 'hidden';
+        if (shouldHideNow) {
+          elements[i].style.setProperty('display', 'none', 'important');
+          elements[i].style.setProperty('visibility', 'hidden', 'important');
+        } else {
+          elements[i].style.removeProperty('display');
+          elements[i].style.removeProperty('visibility');
+        }
       }
     });
   }
   
+  // Load settings from storage
+  async function loadSettings() {
+    return new Promise((resolve) => {
+      chrome.storage.local.get(['settings'], (result) => {
+        if (result.settings) {
+          // Merge with defaults to handle missing keys from older versions
+          settings = { ...settings, ...result.settings };
+        }
+        console.log('NaniKani: Settings loaded', settings);
+        resolve(settings);
+      });
+    });
+  }
+  
+  // Listen for settings changes from popup
+  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.type === 'SETTINGS_CHANGED') {
+      console.log('NaniKani: Settings changed via message', message.settings);
+      settings = message.settings;
+      hideElements();
+      sendResponse({ success: true });
+    }
+  });
+  
+  // Also listen for storage changes (in case settings are changed from another tab)
+  chrome.storage.onChanged.addListener((changes, areaName) => {
+    if (areaName === 'local' && changes.settings) {
+      console.log('NaniKani: Settings changed via storage', changes.settings.newValue);
+      settings = { ...settings, ...changes.settings.newValue };
+      hideElements();
+    }
+  });
+  
   // Initialize content script
-  function init() {
+  async function init() {
     console.log('NaniKani: Initializing...');
+    
+    // Load settings first
+    await loadSettings();
     
     // Hide elements immediately
     hideElements();
