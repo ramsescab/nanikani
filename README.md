@@ -1,73 +1,39 @@
 # NaniKani
 
-A Google Chrome Extension.
+A Chrome extension that hides statistics on WaniKani to help you focus on learning.
 
-## Project Structure
+## Why?
 
-```
-nanikani/
-├── manifest.json          # Extension configuration
-├── background/
-│   └── background.js      # Background service worker
-├── content/
-│   ├── content.js         # Content script (runs on web pages)
-│   └── content.css        # Content styles
-├── popup/
-│   ├── popup.html         # Popup UI
-│   ├── popup.js           # Popup logic
-│   └── popup.css          # Popup styles
-├── icons/
-│   ├── icon16.png         # 16x16 icon
-│   ├── icon32.png         # 32x32 icon
-│   ├── icon48.png         # 48x48 icon
-│   └── icon128.png        # 128x128 icon
-└── README.md
-```
+Every now and then while using WaniKani, I get too focused on the numbers, the right answers, the percentage, the items left... I experimented using WaniKani removing the. progress while doing the lessons, the practice or the extra study and I focused more on the learning process.
 
-## Installation
+NaniKani does that. Hides the progress and let's you focus on the study.
 
-### Development Mode
+## What?
 
-1. Open Chrome and navigate to `chrome://extensions/`
-2. Enable "Developer mode" in the top right corner
-3. Click "Load unpacked"
-4. Select the `nanikani` folder
-5. The extension should now appear in your extensions list
+- Hides quiz statistics during lessons and reviews
+- Works on `/subject-lessons` and `/recent-mistakes` pages
+- Automatically applies when navigating within WaniKani
 
-### Adding Icons
+## How?
 
-Before loading the extension, add your icon files to the `icons/` folder:
-- `icon16.png` - 16x16 pixels
-- `icon32.png` - 32x32 pixels
-- `icon48.png` - 48x48 pixels
-- `icon128.png` - 128x128 pixels
+I'm still experimenting with this extension but if you want to give it a try:
 
-## Development
+1. Clone or download this repository
+2. Open Chrome and go to `chrome://extensions/`
+3. Enable **Developer mode** (top right)
+4. Click **Load unpacked**
+5. Select the `nanikani` folder
 
-### Manifest V3
+Once installed, the extension automatically hides the following elements on WaniKani:
 
-This extension uses Manifest V3, the latest version of Chrome's extension platform.
+- `.character-header__menu-statistics`
+- `.quiz-statistics`
+- `.quiz-statistics__item`
 
-### Key Files
+## Disclaimer
 
-- **manifest.json**: Defines the extension's metadata, permissions, and structure
-- **background.js**: Service worker that handles background tasks and messaging
-- **content.js/css**: Scripts and styles injected into web pages
-- **popup.html/js/css**: The popup UI shown when clicking the extension icon
+This extension is provided "as is" without warranty of any kind. The author is not responsible for any consequences resulting from the use of this extension.
 
-### Permissions
+**NaniKani is an independent project and is not affiliated with, endorsed by, or in any way officially connected to WaniKani or Tofugu LLC.**
 
-Current permissions:
-- `storage`: For storing extension data
-- `activeTab`: For accessing the current tab
-
-### Debugging
-
-1. Open `chrome://extensions/`
-2. Find NaniKani and click "Inspect views: service worker" to debug background script
-3. Right-click the extension icon and select "Inspect popup" to debug popup
-4. Use browser DevTools on any page to debug content scripts
-
-## License
-
-MIT License
+Contributions and feedback are welcome! Feel free to open an issue or submit a pull request.
