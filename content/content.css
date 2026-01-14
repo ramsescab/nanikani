@@ -1,26 +1,9 @@
 /* NaniKani Content Styles */
-/* These styles are injected into web pages */
+/* Hide statistics elements on WaniKani */
 
-.nanikani-container {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.nanikani-highlight {
-  background-color: rgba(74, 144, 217, 0.2);
-  border-radius: 2px;
-  padding: 0 2px;
-}
-
-.nanikani-tooltip {
-  position: absolute;
-  background-color: #1a1a1a;
-  color: #ffffff;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  max-width: 300px;
-  z-index: 999999;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.character-header__menu-statistics,
+.quiz-statistics,
+.quiz-statistics__item {
+  display: none !important;
+  visibility: hidden !important;
 }
