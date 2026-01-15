@@ -4,13 +4,6 @@
 (function() {
   'use strict';
   
-  // Elements to hide
-  const HIDDEN_CLASSES = [
-    'character-header__menu-statistics',
-    'quiz-statistics',
-    'quiz-statistics__item'
-  ];
-  
   // Default settings
   let settings = {
     hideLessons: true,
@@ -33,38 +26,28 @@
     return window.location.pathname.startsWith('/recent-mistakes');
   }
   
-  // Check if we should hide on current route based on settings
-  function shouldHide() {
-    if (isLessonsRoute() && settings.hideLessons) return true;
-    if (isReviewsRoute() && settings.hideReviews) return true;
-    if (isExtraStudyRoute() && settings.hideExtraStudy) return true;
-    return false;
-  }
-  
-  // Hide elements by class name
-  function hideElements() {
-    const shouldHideNow = shouldHide();
-    console.log('NaniKani: hideElements called', { 
-      path: window.location.pathname,
-      isLessons: isLessonsRoute(),
-      isReviews: isReviewsRoute(),
-      isExtraStudy: isExtraStudyRoute(),
-      settings,
-      shouldHide: shouldHideNow 
-    });
+  // Apply CSS classes to html element based on current route and settings
+  function applyHidingClasses() {
+    const html = document.documentElement;
     
-    HIDDEN_CLASSES.forEach(className => {
-      const elements = document.getElementsByClassName(className);
-      console.log(`NaniKani: Found ${elements.length} elements with class "${className}"`);
-      for (let i = 0; i < elements.length; i++) {
-        if (shouldHideNow) {
-          elements[i].style.setProperty('display', 'none', 'important');
-          elements[i].style.setProperty('visibility', 'hidden', 'important');
-        } else {
-          elements[i].style.removeProperty('display');
-          elements[i].style.removeProperty('visibility');
-        }
-      }
+    // Remove all nanikani classes first
+    html.classList.remove('nanikani-hide-lessons', 'nanikani-hide-reviews', 'nanikani-hide-extra-study');
+    
+    // Add appropriate class based on current route and settings
+    if (isLessonsRoute() && settings.hideLessons) {
+      html.classList.add('nanikani-hide-lessons');
+    }
+    if (isReviewsRoute() && settings.hideReviews) {
+      html.classList.add('nanikani-hide-reviews');
+    }
+    if (isExtraStudyRoute() && settings.hideExtraStudy) {
+      html.classList.add('nanikani-hide-extra-study');
+    }
+    
+    console.log('NaniKani: Classes applied', {
+      path: window.location.pathname,
+      classes: html.className,
+      settings
     });
   }
   
@@ -87,7 +70,7 @@
     if (message.type === 'SETTINGS_CHANGED') {
       console.log('NaniKani: Settings changed via message', message.settings);
       settings = message.settings;
-      hideElements();
+      applyHidingClasses();
       sendResponse({ success: true });
     }
   });
@@ -97,7 +80,7 @@
     if (areaName === 'local' && changes.settings) {
       console.log('NaniKani: Settings changed via storage', changes.settings.newValue);
       settings = { ...settings, ...changes.settings.newValue };
-      hideElements();
+      applyHidingClasses();
     }
   });
   
@@ -105,35 +88,14 @@
   async function init() {
     console.log('NaniKani: Initializing...');
     
-    // Load settings first
+    // Apply classes immediately (before settings load, using defaults)
+    applyHidingClasses();
+    
+    // Load settings
     await loadSettings();
     
-    // Hide elements immediately
-    hideElements();
-    
-    // Also hide when DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', hideElements);
-    }
-    
-    // Use MutationObserver to handle dynamically loaded content
-    const observer = new MutationObserver((mutations) => {
-      hideElements();
-    });
-    
-    // Start observing when body is available
-    const startObserving = () => {
-      if (document.body) {
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true
-        });
-      } else {
-        requestAnimationFrame(startObserving);
-      }
-    };
-    
-    startObserving();
+    // Re-apply with loaded settings
+    applyHidingClasses();
     
     // Listen for SPA navigation (History API changes)
     let lastUrl = location.href;
@@ -166,10 +128,8 @@
     function onUrlChange() {
       lastUrl = location.href;
       console.log('NaniKani: URL changed to', location.pathname);
-      // Small delay to let the DOM update
-      setTimeout(hideElements, 100);
-      setTimeout(hideElements, 500);
-      setTimeout(hideElements, 1000);
+      // Apply classes immediately on URL change
+      applyHidingClasses();
     }
   }
   

@@ -1,2 +1,26 @@
 /* NaniKani Content Styles */
-/* Styles are applied dynamically via JavaScript based on user settings */
+/* Base hiding classes - applied via JavaScript by adding classes to html element */
+
+/* When hide-lessons class is on html and we're on lessons page */
+html.nanikani-hide-lessons .character-header__menu-statistics,
+html.nanikani-hide-lessons .quiz-statistics,
+html.nanikani-hide-lessons .quiz-statistics__item {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* When hide-reviews class is on html and we're on reviews page */
+html.nanikani-hide-reviews .character-header__menu-statistics,
+html.nanikani-hide-reviews .quiz-statistics,
+html.nanikani-hide-reviews .quiz-statistics__item {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* When hide-extra-study class is on html and we're on extra study page */
+html.nanikani-hide-extra-study .character-header__menu-statistics,
+html.nanikani-hide-extra-study .quiz-statistics,
+html.nanikani-hide-extra-study .quiz-statistics__item {
+  display: none !important;
+  visibility: hidden !important;
+}
