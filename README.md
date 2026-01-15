@@ -4,7 +4,7 @@
 
 # NaniKani
 
-A Chrome extension that hides statistics on WaniKani to help you focus on learning.
+A Chrome extension that hides statistics lessons, reviews and extra study on WaniKani to help you focus on learning.
 
 ## Why?
 
@@ -15,7 +15,7 @@ NaniKani does that. Hides the progress and let's you focus on the study.
 ## What?
 
 - Hides quiz statistics during lessons and reviews
-- Works on `/subject-lessons` and `/recent-mistakes` pages
+- Works on `/subject-lessons` and `/recent-mistakes` and `/subject` pages
 - Automatically applies when navigating within WaniKani
 
 ## How?
