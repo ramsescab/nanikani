@@ -8,7 +8,8 @@
   let settings = {
     hideLessons: true,
     hideReviews: true,
-    hideExtraStudy: true
+    hideExtraStudy: true,
+    hideProgress: true
   };
   
   // Check if current URL matches lessons route
@@ -31,7 +32,7 @@
     const html = document.documentElement;
     
     // Remove all nanikani classes first
-    html.classList.remove('nanikani-hide-lessons', 'nanikani-hide-reviews', 'nanikani-hide-extra-study');
+    html.classList.remove('nanikani-hide-lessons', 'nanikani-hide-reviews', 'nanikani-hide-extra-study', 'nanikani-hide-progress');
     
     // Add appropriate class based on current route and settings
     if (isLessonsRoute() && settings.hideLessons) {
@@ -42,6 +43,9 @@
     }
     if (isExtraStudyRoute() && settings.hideExtraStudy) {
       html.classList.add('nanikani-hide-extra-study');
+    }
+    if (settings.hideProgress) {
+      html.classList.add('nanikani-hide-progress');
     }
     
     console.log('NaniKani: Classes applied', {

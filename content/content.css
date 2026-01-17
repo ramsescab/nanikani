@@ -24,3 +24,9 @@ html.nanikani-hide-extra-study .quiz-statistics__item {
   display: none !important;
   visibility: hidden !important;
 }
+
+/* When hide-progress class is on html, hide the progress bar */
+html.nanikani-hide-progress .quiz-progress {
+  display: none !important;
+  visibility: hidden !important;
+}

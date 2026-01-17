@@ -3,7 +3,8 @@
 const DEFAULT_SETTINGS = {
   hideLessons: true,
   hideReviews: true,
-  hideExtraStudy: true
+  hideExtraStudy: true,
+  hideProgress: true
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,18 +19,21 @@ async function init() {
   document.getElementById('hideLessons').checked = settings.hideLessons;
   document.getElementById('hideReviews').checked = settings.hideReviews;
   document.getElementById('hideExtraStudy').checked = settings.hideExtraStudy;
+  document.getElementById('hideProgress').checked = settings.hideProgress;
   
   // Add event listeners
   document.getElementById('hideLessons').addEventListener('change', onSettingChange);
   document.getElementById('hideReviews').addEventListener('change', onSettingChange);
   document.getElementById('hideExtraStudy').addEventListener('change', onSettingChange);
+  document.getElementById('hideProgress').addEventListener('change', onSettingChange);
 }
 
 async function onSettingChange() {
   const settings = {
     hideLessons: document.getElementById('hideLessons').checked,
     hideReviews: document.getElementById('hideReviews').checked,
-    hideExtraStudy: document.getElementById('hideExtraStudy').checked
+    hideExtraStudy: document.getElementById('hideExtraStudy').checked,
+    hideProgress: document.getElementById('hideProgress').checked
   };
   
   await saveSettings(settings);
