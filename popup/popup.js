@@ -41,7 +41,11 @@ async function onSettingChange() {
   // Notify content script of settings change
   const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
   if (tabs[0]?.id) {
-    chrome.tabs.sendMessage(tabs[0].id, { type: 'SETTINGS_CHANGED', settings });
+    try {
+      await chrome.tabs.sendMessage(tabs[0].id, { type: 'SETTINGS_CHANGED', settings });
+    } catch (error) {
+      // Content script not loaded on this tab (not a WaniKani page)
+    }
   }
 }
 
