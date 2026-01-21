@@ -27,6 +27,11 @@ header {
 header .logo {
   width: 80px;
   height: auto;
+  transition: transform 0.2s ease;
+}
+
+header .logo:hover {
+  transform: scale(1.05);
 }
 
 main {
@@ -55,9 +60,16 @@ main .description {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 0;
+  padding: 8px 6px;
   cursor: pointer;
   user-select: none;
+  border-radius: 6px;
+  margin: 0 -6px;
+  transition: background-color 0.15s ease;
+}
+
+.checkbox-item:hover {
+  background-color: #fafafa;
 }
 
 .checkbox-item input[type="checkbox"] {
@@ -65,28 +77,45 @@ main .description {
   -webkit-appearance: none;
   width: 18px;
   height: 18px;
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
   position: relative;
   background-color: #fff;
+  transition: all 0.2s ease;
+}
+
+.checkbox-item input[type="checkbox"]:hover {
+  border-color: #F52BA8;
+}
+
+.checkbox-item input[type="checkbox"]:focus-visible {
+  outline: 2px solid #FB54D3;
+  outline-offset: 2px;
 }
 
 .checkbox-item input[type="checkbox"]:checked {
-  background-color: #ff69b4;
-  border-color: #ff69b4;
+  background-image: linear-gradient(180deg, #FB54D3 0%, #F52AA7 100%);
+  border-color: #F52AA7;
 }
 
 .checkbox-item input[type="checkbox"]:checked::after {
   content: '';
   position: absolute;
   left: 4px;
-  top: -1px;
+  top: 0px;
   width: 5px;
   height: 10px;
   border: solid white;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+  animation: checkmark-pop 0.2s ease;
+}
+
+@keyframes checkmark-pop {
+  0% { transform: rotate(45deg) scale(0); }
+  50% { transform: rotate(45deg) scale(1.2); }
+  100% { transform: rotate(45deg) scale(1); }
 }
 
 .checkbox-item .label-text {
@@ -94,8 +123,23 @@ main .description {
   color: #333333;
 }
 
+.current-tag {
+  display: none;
+  font-size: 10px;
+  padding: 2px 6px;
+  background-color: #FFE4F5;
+  color: #F52BA8;
+  border-radius: 8px;
+  margin-left: 6px;
+  font-weight: 500;
+}
+
+.current-tag.visible {
+  display: inline-block;
+}
+
 .checkbox-item:hover .label-text {
-  color: #4a90d9;
+  color: #F52BA8;
 }
 
 .divider {
@@ -120,12 +164,13 @@ footer .credit {
 }
 
 footer a {
-  color: #4a90d9;
+  color: #F52BA8;
   text-decoration: none;
 }
 
 footer a:hover {
   text-decoration: underline;
+  color: #F52BA8;
 }
 
 button {

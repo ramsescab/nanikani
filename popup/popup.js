@@ -26,6 +26,29 @@ async function init() {
   document.getElementById('hideReviews').addEventListener('change', onSettingChange);
   document.getElementById('hideExtraStudy').addEventListener('change', onSettingChange);
   document.getElementById('hideProgress').addEventListener('change', onSettingChange);
+  
+  // Check current page and show "Current" tag
+  await detectCurrentPage();
+}
+
+async function detectCurrentPage() {
+  try {
+    const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (tabs[0]?.url) {
+      const url = new URL(tabs[0].url);
+      const pathname = url.pathname;
+      
+      if (pathname.startsWith('/subject-lessons')) {
+        document.getElementById('currentLessons').classList.add('visible');
+      } else if (pathname.startsWith('/subjects/review')) {
+        document.getElementById('currentReviews').classList.add('visible');
+      } else if (pathname.startsWith('/recent-mistakes')) {
+        document.getElementById('currentExtraStudy').classList.add('visible');
+      }
+    }
+  } catch (error) {
+    // Unable to detect current page
+  }
 }
 
 async function onSettingChange() {
