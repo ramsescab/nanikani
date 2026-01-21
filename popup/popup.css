@@ -49,6 +49,17 @@ main .description {
   margin-bottom: 4px;
 }
 
+main .description .heart {
+  color: #F52BA8;
+  display: inline-block;
+  animation: heartbeat 1s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
 .settings h2 {
   font-size: 14px;
   font-weight: 600;
