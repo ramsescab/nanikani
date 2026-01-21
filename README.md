@@ -29,6 +29,9 @@ Choose where to hide quiz statistics:
 ### Hide Progress Bar
 Optionally hide the quiz progress bar (`.quiz-progress`) across all study sessions to fully immerse yourself in the learning experience.
 
+### Smart "Current" Indicator
+When you're on a WaniKani study page, the popup shows a "Current" tag next to the matching option, so you always know which settings apply to your current session.
+
 All settings are accessible via the extension popup and are saved automatically.
 
 ## How?
