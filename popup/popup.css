@@ -5,7 +5,7 @@
 }
 
 body {
-  width: 320px;
+  width: 360px;
   min-height: 200px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
   background-color: #ffffff;
@@ -14,28 +14,56 @@ body {
 
 .container {
   display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  display: flex;
   flex-direction: column;
-  gap: 16px;
-}
-
-header {
-  text-align: center;
-  padding: 24px 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 14px;
   background-image: linear-gradient(180deg, #FB54D3 0%, #F52AA7 100%);
+  min-height: 100%;
 }
 
-header .logo {
-  width: 80px;
-  height: auto;
+.sidebar .logo {
+  height: 180px;
+  width: auto;
   transition: transform 0.2s ease;
 }
 
-header .logo:hover {
+.sidebar .logo:hover {
   transform: scale(1.05);
 }
 
+.sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: white;
+}
+
+.sidebar-footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar-footer a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 16px;
+}
+
 main {
-  padding: 0 16px;
+  padding: 16px 16px 16px 16px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -157,31 +185,6 @@ main .description .heart {
   border: none;
   border-top: 1px solid #e0e0e0;
   margin: 8px 0;
-}
-
-footer {
-  text-align: center;
-  padding: 12px 16px;
-  background-color: #F8F0F5;
-}
-
-footer p {
-  font-size: 12px;
-  color: #999999;
-}
-
-footer .credit {
-  margin-top: 4px;
-}
-
-footer a {
-  color: #F52BA8;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-  color: #F52BA8;
 }
 
 button {
