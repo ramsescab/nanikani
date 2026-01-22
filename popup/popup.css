@@ -42,8 +42,9 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
-  color: white;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
 }
 
 .sidebar-footer a {
@@ -70,11 +71,18 @@ main {
   gap: 12px;
 }
 
+main h1 {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(45, 20, 35, 0.92);
+  margin: 0;
+}
+
 main .description {
   font-size: 14px;
-  line-height: 1.5;
-  color: #666666;
-  margin-bottom: 4px;
+  line-height: 1.6;
+  color: rgba(45, 20, 35, 0.72);
+  font-weight: 400;
 }
 
 main .description .heart {
@@ -91,8 +99,8 @@ main .description .heart {
 .settings h2 {
   font-size: 14px;
   font-weight: 600;
-  color: #333333;
-  margin-bottom: 12px;
+  color: rgba(30, 25, 45, 0.56);
+  margin-bottom: 8px;
 }
 
 .checkbox-item {
@@ -159,7 +167,8 @@ main .description .heart {
 
 .checkbox-item .label-text {
   font-size: 14px;
-  color: #333333;
+  font-weight: 400;
+  color: rgba(45, 20, 35, 0.80);
 }
 
 .current-tag {
