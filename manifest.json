@@ -1,11 +1,10 @@
 {
   "manifest_version": 3,
   "name": "NaniKani",
-  "version": "0.1",
+  "version": "1.0.0",
   "description": "NaniKani - Hide statistics on WaniKani lessons and reviews",
   "permissions": [
-    "storage",
-    "activeTab"
+    "storage"
   ],
   "action": {
     "default_popup": "popup/popup.html",

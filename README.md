@@ -4,57 +4,52 @@
 
 # NaniKani
 
-A Chrome extension that hides statistics lessons, reviews and extra study on WaniKani to help you focus on learning.
+Hide quiz statistics on WaniKani and focus purely on learning — just you and the kanji 🌸
 
-## Why?
+## About
 
-Every now and then while using WaniKani, I get too focused on the numbers, the right answers, the percentage, the items left... I experimented using WaniKani removing the. progress while doing the lessons, the practice or the extra study and I focused more on the learning process.
+We've all been there. You're supposed to be learning kanji, but instead you're staring at that percentage going "okay, 73%... if I get the next 5 right, I'll be at 78%..."
 
-NaniKani does that. Hides the progress and let's you focus on the study.
-
-## What?
-
-- Hides quiz statistics during lessons and reviews
-- Works on `/subject-lessons` and `/recent-mistakes` and `/subject` pages
-- Automatically applies when navigating within WaniKani
+NaniKani hides all those distracting numbers so you can actually focus on what matters 〜
 
 ## Features
 
-### Hide Stats
-Choose where to hide quiz statistics:
-- **Lessons** - Hide stats on `/subject-lessons` pages
-- **Reviews** - Hide stats on `/subjects/review` pages
-- **Extra Study** - Hide stats on `/recent-mistakes` pages
+**🎯 Hide Stats Where You Want**
+- **Lessons** — No stats, just learning
+- **Reviews** — Focus mode activated
+- **Extra Study** — Peaceful practice
 
-### Hide Progress Bar
-Optionally hide the quiz progress bar (`.quiz-progress`) across all study sessions to fully immerse yourself in the learning experience.
+**📊 Hide Progress Bar**
+Because sometimes you don't need to know you're only 12% done. Ignorance is bliss.
 
-### Smart "Current" Indicator
-When you're on a WaniKani study page, the popup shows a "Current" tag next to the matching option, so you always know which settings apply to your current session.
+**✨ Smart "Current" Indicator**
+The popup tells you which page you're on. Helpful little thing.
 
-All settings are accessible via the extension popup and are saved automatically.
+**⚡ Zero Config**
+Install it. Click things. It just works. Settings save automatically.
 
-## How?
+## Installation
 
-I'm still experimenting with this extension but if you want to give it a try:
+### Chrome Web Store
+Install directly from the [Chrome Web Store](#) (link coming soon).
 
+### Manual Installation
 1. Clone or download this repository
 2. Open Chrome and go to `chrome://extensions/`
 3. Enable **Developer mode** (top right)
 4. Click **Load unpacked**
 5. Select the `nanikani` folder
 
-Once installed, click the NaniKani extension icon to customize which elements to hide:
+## Privacy
 
-- `.character-header__menu-statistics`
-- `.quiz-statistics`
-- `.quiz-statistics__item`
-- `.quiz-progress` (optional)
+NaniKani doesn't collect anything. Your data stays on your device. We're here to hide stats, not harvest data. See the [Privacy Policy](PRIVACY.md) if you want the formal version.
 
 ## Disclaimer
 
-This extension is provided "as is" without warranty of any kind. The author is not responsible for any consequences resulting from the use of this extension.
+This extension is provided "as is" — use at your own risk, etc. etc.
 
-**NaniKani is an independent project and is not affiliated with, endorsed by, or in any way officially connected to WaniKani or Tofugu LLC.**
+**NaniKani is a fan project and has no affiliation with WaniKani or Tofugu LLC.**
 
-Contributions and feedback are welcome! Feel free to open an issue or submit a pull request.
+---
+
+Found a bug? Have an idea? Open an issue or PR — contributions welcome! 💛
