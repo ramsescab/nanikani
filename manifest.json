@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "description": "NaniKani - Hide statistics on WaniKani lessons and reviews",
   "permissions": [
-    "storage"
+    "storage",
+    "activeTab"
   ],
   "action": {
     "default_popup": "popup/popup.html",
