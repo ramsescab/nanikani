@@ -12,6 +12,10 @@ We've all been there. You're supposed to be learning kanji, but instead you're s
 
 NaniKani hides all those distracting numbers so you can actually focus on what matters 〜
 
+<p align="center">
+  <img src="documentation/popup.png" alt="Extension Popup" width="100%" height="auto">
+</p>
+
 ## Features
 
 **🎯 Hide Stats Where You Want**
