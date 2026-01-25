@@ -7,11 +7,8 @@ const DEFAULT_SETTINGS = {
   hideProgress: true
 };
 
-const CALLOUT_DISMISSED_KEY = 'refreshCalloutDismissed';
-
 document.addEventListener('DOMContentLoaded', () => {
   init();
-  initCallout();
 });
 
 async function init() {
@@ -87,22 +84,5 @@ async function getSettings() {
 async function saveSettings(settings) {
   return new Promise((resolve) => {
     chrome.storage.local.set({ settings }, resolve);
-  });
-}
-
-async function initCallout() {
-  const callout = document.getElementById('refreshCallout');
-  const dismissBtn = document.getElementById('dismissCallout');
-  
-  // Check if callout was previously dismissed
-  const result = await chrome.storage.local.get([CALLOUT_DISMISSED_KEY]);
-  if (result[CALLOUT_DISMISSED_KEY]) {
-    callout.classList.add('hidden');
-  }
-  
-  // Add dismiss handler
-  dismissBtn.addEventListener('click', async () => {
-    callout.classList.add('hidden');
-    await chrome.storage.local.set({ [CALLOUT_DISMISSED_KEY]: true });
   });
 }
