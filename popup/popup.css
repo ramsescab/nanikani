@@ -214,3 +214,47 @@ button:hover {
 button:active {
   background-color: #2d6cb5;
 }
+
+/* Callout */
+.callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  background-color: #FFF8E6;
+  border: 1px solid #F5D87A;
+  border-radius: 8px;
+  margin-top: 4px;
+}
+
+.callout.hidden {
+  display: none;
+}
+
+.callout-text {
+  flex: 1;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #8B6914;
+}
+
+.callout-dismiss {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #C9A227;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.callout-dismiss:hover {
+  background-color: rgba(200, 160, 40, 0.15);
+  color: #8B6914;
+}
