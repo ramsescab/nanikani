@@ -4,8 +4,12 @@
   "version": "1.0.0",
   "description": "NaniKani - Hide statistics on WaniKani lessons and reviews",
   "permissions": [
-    "storage",
-    "activeTab"
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.wanikani.com/subject-lessons/*",
+    "https://www.wanikani.com/subjects/review/*",
+    "https://www.wanikani.com/recent-mistakes/*"
   ],
   "action": {
     "default_popup": "popup/popup.html",
@@ -28,8 +32,9 @@
   "content_scripts": [
     {
       "matches": [
-        "https://www.wanikani.com/*",
-        "https://wanikani.com/*"
+        "https://www.wanikani.com/subject-lessons/*",
+        "https://www.wanikani.com/subjects/review/*",
+        "https://www.wanikani.com/recent-mistakes/*"
       ],
       "js": ["content/content.js"],
       "css": ["content/content.css"],
