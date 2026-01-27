@@ -44,6 +44,28 @@ Install directly from the [Chrome Web Store](#) (link coming soon).
 4. Click **Load unpacked**
 5. Select the `nanikani` folder
 
+## Development
+
+### Testing
+
+The extension includes a comprehensive test suite built with Jest.
+
+```bash
+# Install dependencies
+npm install
+
+# Run all tests
+npm test
+
+# Run tests in watch mode (for development)
+npm run test:watch
+
+# Generate coverage report
+npm run test:coverage
+```
+
+See [`__tests__/README.md`](__tests__/README.md) for more details about the test suite.
+
 ## Privacy
 
 NaniKani doesn't collect anything. Your data stays on your device. We're here to hide stats, not harvest data. See the [Privacy Policy](PRIVACY.md) if you want the formal version.
